@@ -1,0 +1,31 @@
+<div>
+  <h1 class="mat-title">Add Test Results</h1>
+</div>
+<form class="mat-body">
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="patientsname">Patient's Name</label>
+      <input type="text" id="patientsname" class="form-control form-control-sm" name="patientsname" [value]="booking.reservedUser?.name" disabled/>
+    </div>
+    <div class="col-sm-6 form-group">
+      <label for="reservationDate">Reservation Date</label>
+      <input type="date" id="reservationDate" class="form-control form-control-sm" name="reservationDate" [(ngModel)]="observation.dateEntered" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 form-group">
+      <Label for="description">Test Type</Label>
+      <textarea rows="3" id="description" class="form-control form-control-sm" name="description" [(ngModel)]="observation.description"></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8"></div>
+    <div class="col-sm-2 form-group">
+      <button class="btn btn-primary from-control form-control-sm modalButton" *ngIf="isAuthenticated" (click)="addObservation()">Add</button>
+    </div>
+    <div class="col-sm-2 form-group">
+      <button class="btn btn-danger from-control form-control-sm modalButton" (click)="closeDialog()">Cancel</button>
+    </div>
+  </div>
+</form>

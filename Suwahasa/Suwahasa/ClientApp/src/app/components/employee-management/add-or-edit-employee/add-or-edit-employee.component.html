@@ -1,0 +1,109 @@
+<div>
+  <h1 class="mat-title">{{state == 'new' || state == 'mnew' ? 'Add' : 'Edit'}} Employee</h1>
+</div>
+<form class="mat-body">
+  <div class="row errorContainer removeMarginsPaddings" *ngIf="!isValid">
+    <div class="col-sm-12">
+      {{invalidText}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="firstName">First Name<span class="required">*</span></label>
+      <input type="text" id="firstName" class="form-control form-control-sm" [(ngModel)]="employee.firstName" name="firstName" required>
+    </div>
+    <div class="col-sm-6 form-group">
+      <Label for="lastName">Last Name<span class="required">*</span></Label>
+      <input type="text" id="lastName" class="form-control form-control-sm" [(ngModel)]="employee.lastName" name="lastName" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="nic">National Id<span class="required">*</span></label>
+      <input type="text" id="nic" class="form-control form-control-sm" [(ngModel)]="employee.nic" name="nic" maxlength="10" required>
+    </div>
+    <div class="col-sm-6 form-group">
+      <Label for="license">Driving License</Label>
+      <input type="text" id="license" class="form-control form-control-sm" [(ngModel)]="employee.driversLicenseNumber" name="driversLicenseNumber">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="phone">Contact Number<span class="required">*</span></label>
+      <input type="text" id="phone" class="form-control form-control-sm" [(ngModel)]="employee.phone" name="phone" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+    </div>
+    <div class="col-sm-6 form-group">
+      <Label for="email">Email<span class="required">*</span></Label>
+      <input type="email" id="email" class="form-control form-control-sm" [(ngModel)]="employee.email" name="email" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 form-group">
+      <label for="address1">Address line 1<span class="required">*</span></label>
+      <input type="text" id="address1" class="form-control form-control-sm" [(ngModel)]="employee.addressLine1" name="addressLine1" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 form-group">
+      <label for="address2">Address line 2</label>
+      <input type="text" id="address2" class="form-control form-control-sm" [(ngModel)]="employee.addressLine2" name="addressLine2">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="city">City<span class="required">*</span></label>
+      <input type="text" id="city" class="form-control form-control-sm" [(ngModel)]="employee.city" name="city" required>
+    </div>
+    <div class="col-sm-6 form-group">
+      <Label for="district">District<span class="required">*</span></Label>
+      <select class="form-control form-control-sm" (change)="onDistrictChange($event)" required>
+        <option [value]="item.name" [selected]="employee.district == item.name" *ngFor="let item of districts" name="district">{{item.name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="province">Province<span class="required">*</span></label>
+      <input type="text" id="province" class="form-control form-control-sm" [(ngModel)]="employee.province" name="province" required disabled>
+    </div>
+    <div class="col-sm-6 form-group">
+      <Label for="postal">Postal Code</Label>
+      <input type="text" id="postal" class="form-control form-control-sm" [(ngModel)]="employee.postalCode" name="postalCode">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <Label for="role">Role<span class="required">*</span></Label>
+      <select class="form-control form-control-sm" (change)="onRoleChange($event)" required>
+        <option [value]="item" [selected]="employee.role == item" *ngFor="let item of roles" name="role">{{item}}</option>
+      </select>
+    </div>
+    <div class="col-sm-6 form-group">
+      <label for="firstName">Hospital<span class="required">*</span></label>
+      <select class="form-control form-control-sm" (change)="onHospitalChange($event)" required [disabled]="disableHospital">
+        <option [value]="item.id" [selected]="employee.hospitalFk == item.id" *ngFor="let item of hospitals" name="hospitalId">{{item.name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="specialization">Specialization</label>
+      <input type="text" id="specialization" class="form-control form-control-sm" [(ngModel)]="employee.specialization" name="specialization">
+    </div>
+    <div class="col-sm-6 form-group">
+      <label for="firstName">Status<span class="required">*</span></label>
+      <select class="form-control form-control-sm" (change)="onStatusChange($event)" required>
+        <option [value]="item" [selected]="employee.activeText == item" *ngFor="let item of employeeStatusList" name="active">{{item}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8"></div>
+    <div class="col-sm-2 form-group">
+      <button class="btn btn-primary from-control form-control-sm modalButton" (click)="createEmployee()">{{state == 'new' || state == 'mnew' ? 'Create' : 'Save'}}</button>
+    </div>
+    <div class="col-sm-2 form-group">
+      <button class="btn btn-danger from-control form-control-sm modalButton" (click)="closeDialog()">Cancel</button>
+    </div>
+  </div>
+</form>

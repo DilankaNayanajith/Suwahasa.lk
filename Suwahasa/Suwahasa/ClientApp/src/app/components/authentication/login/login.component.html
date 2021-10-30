@@ -1,0 +1,38 @@
+<!-- <app-header></app-header> -->
+<div class="mat-typography" style="height: 100%;">
+  <div class="row" style="height: 250px;"></div>
+  <div class="row errorContainer removeMarginsPaddings" *ngIf="!isValid">
+    <div class="col-sm-12">
+      {{invalidText}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <form>
+        <div class="row">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" [(ngModel)]="username" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <Label for="password">Password</Label>
+            <input type="password" id="password" name="password" class="form-control" [(ngModel)]="password" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8"><a routerLink="/register" style="text-decoration: none;">Are you a new user?</a></div>
+          <div class="col-sm-2 form-group">
+            <button class="btn btn-primary from-control" (click)="onLoginClicked()">Login</button>
+          </div>
+          <div class="col-sm-2 form-group">
+            <button class="btn btn-danger from-control" (click)="onCancelClicked()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>

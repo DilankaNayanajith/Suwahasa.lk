@@ -1,0 +1,49 @@
+<div>
+  <h1 class="mat-title">Create Reservation</h1>
+</div>
+<form class="mat-body">
+  <div class="row">
+    <div class="col-sm-12 form-group">
+      <label for="patientsname">Patient's Name</label>
+      <input type="text" id="patientsname" class="form-control form-control-sm" name="patientsname" [value]="user ? user.name : ''" disabled/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="hospital">Hosptal</label>
+      <input type="text" id="hospital" class="form-control form-control-sm" name="hospital" [(ngModel)]="hospital.name" disabled>
+    </div>
+    <div class="col-sm-6 form-group">
+      <Label for="package">Package</Label>
+      <input type="text" id="package" class="form-control form-control-sm" name="package" [(ngModel)]="package.name"  disabled>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="reservationDate">Reservation Date</label>
+      <input type="date" id="reservationDate" class="form-control form-control-sm" name="reservationDate" [(ngModel)]="booking.reservationDate" required>
+    </div>
+    <div class="col-sm-6 form-group">
+      <Label for="transport">Trasport Required</Label>
+      <select id="transport" name="transport" class="form-control form-control-sm" (change)="transportRequestStatusChanged($event)" >
+        <option [value]="item" [selected]="transportRequiredText == item" *ngFor="let item of transportRequests">{{item}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="amount">Amount to be paid (LKR)</label>
+      <input type="number" id="amount" class="form-control form-control-sm" name="amount" [(ngModel)]="package.price" disabled>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-7"></div>
+    <div class="col-sm-3 form-group">
+      <button class="btn btn-primary from-control form-control-sm modalButton" *ngIf="isAuthenticated" (click)="createReservation()">Pay and Reserve</button>
+    </div>
+    <div class="col-sm-2 form-group">
+      <button class="btn btn-danger from-control form-control-sm modalButton" (click)="closeDialog()">Cancel</button>
+    </div>
+  </div>
+</form>

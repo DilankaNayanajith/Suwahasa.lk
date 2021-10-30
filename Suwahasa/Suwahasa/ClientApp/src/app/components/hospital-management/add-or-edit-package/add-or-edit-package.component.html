@@ -1,0 +1,40 @@
+<div >
+  <h1 class="mat-title">{{state == 'new' || state == 'mnew' ? 'Add' : 'Edit'}} Package</h1>
+</div>
+<form class="mat-body">
+  <div class="row">
+    <div class="col-sm-12 form-group">
+      <label for="hospital">Hospital</label>
+      <input type="text" id="hospital" class="form-control form-control-sm" name="hospital" value="{{hospital.name}}" readonly>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" class="form-control form-control-sm" [(ngModel)]="package.name" name="name" required>
+    </div>
+    <div class="col-sm-6 form-group">
+      <label for="price">Price</label>
+      <input type="text" id="price" class="form-control form-control-sm" [(ngModel)]="package.price"
+        name="vehicleNumber" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 form-group">
+      <label for="description">Description</label>
+      <textarea type="text" id="description" class="form-control form-control-sm" [(ngModel)]="package.description" name="description"></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8"></div>
+    <div class="col-sm-2 form-group">
+      <button class="btn btn-primary from-control form-control-sm modalButton" (click)="upsertPackage()">{{state == 'new' || state == 'mnew' ? 'Create' : 'Save'}}</button>
+    </div>
+    <div class="col-sm-2 form-group">
+      <button class="btn btn-danger from-control form-control-sm modalButton" (click)="closeDialog()">Cancel</button>
+    </div>
+  </div>
+</form>

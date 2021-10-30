@@ -1,0 +1,39 @@
+<div>
+  <h1 class="mat-title">Add Test Results</h1>
+</div>
+<form class="mat-body">
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <label for="patientsname">Patient's Name</label>
+      <input type="text" id="patientsname" class="form-control form-control-sm" name="patientsname" [value]="booking.reservedUser?.name" disabled/>
+    </div>
+    <div class="col-sm-6 form-group">
+      <label for="reservationDate">Reservation Date</label>
+      <input type="date" id="reservationDate" class="form-control form-control-sm" name="reservationDate" [(ngModel)]="result.dateTested" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 form-group">
+      <Label for="types">Test Type</Label>
+      <select id="types" name="transport" class="form-control form-control-sm">
+        <option [value]="item" [selected]="result.type == item" *ngFor="let item of types" (change)="typeChanged($event)">{{item}}</option>
+      </select>
+    </div>
+    <div class="col-sm-6 form-group">
+      <Label for="results">Test Result</Label>
+      <select id="results" name="transport" class="form-control form-control-sm" (change)="resultsChanged($event)" >
+        <option [value]="item" [selected]="result.result == item" *ngFor="let item of results">{{item}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8"></div>
+    <div class="col-sm-2 form-group">
+      <button class="btn btn-primary from-control form-control-sm modalButton" *ngIf="isAuthenticated" (click)="addTestResult()">Add</button>
+    </div>
+    <div class="col-sm-2 form-group">
+      <button class="btn btn-danger from-control form-control-sm modalButton" (click)="closeDialog()">Cancel</button>
+    </div>
+  </div>
+</form>

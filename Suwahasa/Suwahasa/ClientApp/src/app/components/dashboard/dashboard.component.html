@@ -1,0 +1,100 @@
+<div>
+  <div class="row">
+    <img style="border-radius: 5px;" src="/assets/images/header-image.jpg">
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <mat-card style="background-color: #DCE5F8; margin-top: 10px;" *ngIf="activeBooking">
+        <mat-card-header>
+          <mat-card-title>Active Reservation</mat-card-title>
+          <mat-card-subtitle style="font-weight: 500;">{{activeBooking!.reservedHospital!.name}} | {{activeBooking!.reservedPackage!.name }} |
+            {{activeBooking!.reservationDate}} | Fully Paid | {{activeBooking!.transportRequested ? 'Tranport Requested'
+            : ''}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <button class="btn btn-sm reservationViewBtn" (click)="goToReservationPage()">View</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 15px;">
+    <form>
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="searchKey" name="searchKey"
+          (keyup)="searchHospitals($event)" placeholder="Search for hospitals by city">
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="col-6" style="margin-top: 15px;" *ngFor="let hospital of hospitals">
+      <mat-card md-theme-watch style="background-color: #DCE5F8;">
+        <mat-card-header class="row">
+          <div>
+            <mat-card-title><a>{{hospital.name}}</a></mat-card-title>
+            <mat-card-subtitle>{{hospital.city}}, {{hospital.province}}</mat-card-subtitle>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row mat-typography">
+            <div class="row removeMarginsPaddings">
+              <div class="col removeMarginsPaddings boxPadding">
+                <div class="backgroundBox">
+                  <p>{{hospital.dischargedCovidPatientCount}}</p>
+                  <p>Discharged Covid Patients</p>
+                </div>
+              </div>
+              <div class="col removeMarginsPaddings boxPadding">
+                <div class="backgroundBox">
+                  <p>{{hospital.activeDoctors}}</p>
+                  <p>Active Doctors</p>
+                </div>
+              </div>
+              <div class="col removeMarginsPaddings boxPadding">
+                <div class="backgroundBox">
+                  <p>{{hospital.icuBedCount}}</p>
+                  <p>Available ICU Beds</p>
+                </div>
+              </div>
+            </div>
+            <div class="row removeMarginsPaddings">
+              <div class="col removeMarginsPaddings boxPadding">
+                <div class="backgroundBox">
+                  <p>{{hospital.covidPatientCount}}</p>
+                  <p>Covid Patients</p>
+                </div>
+              </div>
+              <div class="col removeMarginsPaddings boxPadding">
+                <div class="backgroundBox">
+                  <p>{{hospital.activeNurses}}</p>
+                  <p>Active Nurses</p>
+                </div>
+              </div>
+              <div class="col removeMarginsPaddings boxPadding">
+                <div class="backgroundBox">
+                  <p>{{hospital.availableOxygen}}L</p>
+                  <p>Oxygen Available</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="row mat-typography" style="font-weight: 500; font-size: 12pt;">
+            <div class="col icon-text">
+              <mat-icon>smartphone</mat-icon>
+              <mat-icon>whatsapp</mat-icon> <span>{{hospital.phone}}</span>
+            </div>
+            <div class="col" style="color: darkred; width: 100%; text-align: right;">Average Cost: {{hospital.costPerPatient}}/- LKR</div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <!-- <div class="row" > -->
+          <button class="btn btn-success" (click)="onHospitalCardClicked(hospital)"
+            style="width: 100px;">Select</button>
+          <!-- </div> -->
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

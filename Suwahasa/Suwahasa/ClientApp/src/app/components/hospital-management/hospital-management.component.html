@@ -1,0 +1,45 @@
+<div style="height: 100%;">
+  <div class="row pageHeading">
+    <div class="col-sm-10"><h1 class="mat-title">Hospital Management</h1></div>
+    <div class="col-sm-2">
+      <button class="btn btn-primary" (click)="openAddHospitalDialog()">Add Hospital</button>
+    </div>
+  </div>
+
+  <div class="hospitalsGrid">
+    <table mat-table [dataSource]='hospitalsDataSource' matSort class="mat-elevation-z8">
+      <ng-container matColumnDef='name'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef='let element' >
+          <a class="btn btn-link" routerLink="/hospitals/{{element.id}}">{{element.name}}</a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef='category'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+        <td mat-cell *matCellDef='let element' >{{element.category}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef='sub-category'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sub Category</th>
+        <td mat-cell *matCellDef='let element' >{{element.subcategory}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef='city'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+        <td mat-cell *matCellDef='let element' >{{element.city}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef='actions' mat-sort-header>
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef='let element' >
+            <button class="btn" (click)="openEditHospitalDialog(element)"><mat-icon>settings</mat-icon></button>
+            <button class="btn" (click)="deleteHospital(element)"><mat-icon>delete</mat-icon></button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef='displayedColumns; sticky: true'></tr>
+      <tr mat-row *matRowDef='let row; columns: displayedColumns;'></tr>
+    </table>
+  </div>
+</div>

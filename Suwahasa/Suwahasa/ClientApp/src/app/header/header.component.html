@@ -1,0 +1,48 @@
+<div class="container-fluid removeMarginsPaddings" style="margin-top: 10px;">
+  <div class="row removeMarginsPaddings">
+    <div class="col-sm-3">
+      <h1 class="suwahasaTitle"><a href="/" style="text-decoration: none; color: #062767;" >SUWAHASA.lk</a></h1>
+    </div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3">
+      <div class="icon-text headerInfo">
+        <mat-icon>call</mat-icon>  Emergency: (+94) 11 212 2121
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="icon-text headerInfo">
+        <mat-icon>access_time</mat-icon>  Available 24 Hours Everyday
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #062767;">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav" *ngIf="user && user.role == 'Admin'">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/employees">Employees</a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/hospitals">Hospitals</a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/vehicles">Vehicles</a>
+        </li>
+      </ul>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a class="btn btn-sm" style="color: gray;" *ngIf="isAuthenticated && user">{{user ? user.name : ''}}</a></li>
+      <li><a class="btn btn-outline-primary btn-sm auth-button" routerLink="/register" *ngIf="!isAuthenticated">Register</a></li>
+      <li><a class="btn btn-outline-success btn-sm" routerLink="/login" *ngIf="!isAuthenticated">Login</a></li>
+      <li><a class="btn btn-outline-danger btn-sm" (click)="signout()" *ngIf="isAuthenticated">Logout</a></li>
+    </ul>
+  </div>
+</nav>
